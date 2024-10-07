@@ -1,10 +1,10 @@
-import { StyleSheet, FlatList, useColorScheme } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import HistoryItem from '@/components/HistoryItem';
-import { Colors } from '@/constants/Colors';
-import { useCallback, useState } from 'react';
-import { connectToDatabase, getHistoryRecords } from '@/db/db';
-import { useFocusEffect } from 'expo-router';
+import { StyleSheet, FlatList, useColorScheme } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import HistoryItem from "@/components/HistoryItem";
+import { Colors } from "@/constants/Colors";
+import { useCallback, useState } from "react";
+import { connectToDatabase, getHistoryRecords } from "@/db/db";
+import { useFocusEffect } from "expo-router";
 
 export default function History() {
   const colorScheme = useColorScheme();
@@ -13,22 +13,29 @@ export default function History() {
   const getData = useCallback(async () => {
     const db = await connectToDatabase();
     const history = await getHistoryRecords(db);
-    console.log(history);
     setData(history);
   }, []);
 
-  useFocusEffect(useCallback(() => {
-    getData();
-  }, []))
-  
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
+
   return (
-    <SafeAreaView style={{ backgroundColor: Colors[colorScheme ?? "light"].background }}>
+    <SafeAreaView
+      style={{flex:1, backgroundColor: Colors[colorScheme ?? "light"].background }}
+    >
       <FlatList
         data={data}
-        renderItem={({ item }) => <HistoryItem item={item} backgroundColor={Colors[colorScheme ?? "light"].itemBackground} setData={setData}/>}
+        renderItem={({ item }) => (
+          <HistoryItem
+            item={item}
+            setData={setData}
+          />
+        )}
         numColumns={2}
-        keyExtractor={item => item.id!}
-
+        keyExtractor={(item) => item.id!}
       />
     </SafeAreaView>
   );

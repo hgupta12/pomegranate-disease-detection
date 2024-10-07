@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: Colors.light.tint,
     marginBottom: 10,
-
   },
   buttonGroup: {
     flexDirection: 'row',
