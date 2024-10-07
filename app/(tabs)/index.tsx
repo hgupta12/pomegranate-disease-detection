@@ -1,3 +1,4 @@
+import CustomImagePicker from '@/components/ImagePicker';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { StyleSheet } from 'react-native';
@@ -5,7 +6,7 @@ import { StyleSheet } from 'react-native';
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Camera</ThemedText>
+      <CustomImagePicker/>
     </ThemedView>
   );
 }
