@@ -6,6 +6,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
 import { addHistoryItem, connectToDatabase } from '@/db/db';
 import {router} from "expo-router";
+import * as tf from '@tensorflow/tfjs'
+import {bundleResourceIO, decodeJpeg} from '@tensorflow/tfjs-react-native'
+
+const modelJSON = require('../assets/model/model.json')
+const modelWeights = require('../assets/model/weights.bin')
+
+// const loadModel = async()=>{
+// const loadModel = async():Promise<void|tf.LayersModel>=>{
+//     const model = await tf.loadLayersModel(
+//         bundleResourceIO(modelJSON, modelWeights)
+//     ).catch((e)=>{
+//       console.log("[LOADING ERROR] info:",e)
+//     })
+//     return model
+// }
 
 type ImageState = {
   uri: string | null;
